@@ -10,20 +10,8 @@ def remove_title_info(list_reader):
             return end_title
 
 
-def remove_extra_titles(list_to_clean, new_list, end_title, sorted_headings):
-    # list_to_remove = new_list[:end_title]
-    # title_dict = {}
-    # for title in list_to_remove:
-    #     if any(title):
-    #         for word in title:
-    #             if any(word):
-    #                 dict = {word: title.index(word)}
-    #                 title_dict.update(dict)
-    # for row in list_to_clean:
-    #     for key in title_dict:
-    #         if any(str(row[title_dict[key]])):
-    #             if str(row[title_dict[key]]).__contains__(key):
-    #                 row[title_dict[key]] = ''
+def remove_extra_titles(list_to_clean, sorted_headings):
+
     for rows in list_to_clean:
         count = 0
         if any(rows):
@@ -31,7 +19,7 @@ def remove_extra_titles(list_to_clean, new_list, end_title, sorted_headings):
                 if any(items):
                     count += 1
         if count < 5 and not(bool(rows[headings_dict[sorted_headings[9]]] == '') != bool(rows[headings_dict[sorted_headings[9]] + 1] == '')):
-            list_to_clean[list_to_clean.index(rows)] = ['','','','','','','','','','','','','','','']
+            rows = ['','','','','','','','','','','','','','','']
 
 
 with open('bone density example.csv', 'rb') as csvfile:
@@ -57,7 +45,7 @@ with open('bone density example.csv', 'rb') as csvfile:
     # print headings_dict
     sorted_headings = sorted(headings_dict, key=headings_dict.__getitem__)
     # print sorted_headings
-    remove_extra_titles(NEW_LIST, LIST_READER, end_title_info, sorted_headings)
+    remove_extra_titles(NEW_LIST, sorted_headings)
     # for rows in NEW_LIST:
     #     print rows
 
